@@ -1,0 +1,5 @@
+- Thư viện express: Dùng để tạo sever đối với web
+- Thư viện nodemon: Dùng để reset lại trang với bất kì thay đổi nào của mã nguồn, thay vì phải chạy lại mã (Hoạt động giống với npm run dev)
+- Thư viện morgan: Dùng để hiện thị lên console các require
+- Template engine cho phép viết HTML động bằng cách chèn dữ liệu từ sever vào các file template. Phổ biến: Handlebars, Pug
+- express.static: Static file là các file tĩnh như css, js, hình ảnh... được gửi trực tiếp cho client mà không qua xử lý 
