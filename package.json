@@ -18,13 +18,25 @@
     "url": "https://github.com/NAHao2401/Nodejs_blog/issues"
   },
   "homepage": "https://github.com/NAHao2401/Nodejs_blog#readme",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "express": "^5.1.0",
-    "express-handlebars": "^8.0.3"
+    "express-handlebars": "^8.0.3",
+    "mongoose": "^8.17.0"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.4",
     "morgan": "^1.10.1",
     "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
     "sass": "^1.89.2"
   }
 }

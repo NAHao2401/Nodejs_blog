@@ -3,9 +3,41 @@
 - Thư viện morgan: Dùng để hiện thị lên console các require
 - Template engine cho phép viết HTML động bằng cách chèn dữ liệu từ sever vào các file template. Phổ biến: Handlebars, Pug
 - express.static: Static file là các file tĩnh như css, js, hình ảnh... được gửi trực tiếp cho client mà không qua xử lý
-- Đối với việc lấy dữ liệu: + Của Query Parameters thì sẽ là: req.query.
-                            + Của Form Data thì sẽ là: req.body.
+- Đối với việc lấy dữ liệu: + Khi dữ liệu được gửi qua query string (sau dấu ?). Ví dụ: /search?keyword=nodejs&page=2, cách lấy: req.query.keyword → "nodejs"
+req.query.page → "2"
+                            + Khi dữ liệu được gửi qua form (POST) hoặc JSON body. Ví dụ: POST /login với body { username: "admin" }, cách lấy: req.body.username → "admin"
+                            + Khi dữ liệu nằm trong đường dẫn động (route params). Ví dụ: /courses/nodejs-basic nếu route là /courses/:slug, cách lấy: req.params.slug → "nodejs-basic"
+
 - app.use(express.urlencoded({extended: true})):
     + Mục đích: Là Middleware của Express dùng để xử lý dữ liệu form gửi từ client (qua phương thức POST, PUT...)
 - app.use(express.json()):
     + Mục đích: là Middlleware của Express dùng để xử lý dữ liệu JSON gửi từ client
+- express.Router():
+    + Mục đích: Là một module định tuyến (mini-app) trong Express. 
+                Giúp tách biệt các tuyến đường (routes) của ứng dụng ra nhiều file để dễ quản lý.
+                Mộtx router có thể có middleware, routes và logic riêng.
+- Thư viện prettier: Dùng để trình định dạng mã nguồn giúp code tuân theo một style thống nhất.
+                     Tự động căn chỉnh khoảng trắng, xuống dòng, dấu phẩy, dấu nháy,... theo quy tắc cấu hình
+- Thư viện lint-staged: Dùng để chạy script chỉ trên các file đã git staged (đã git add file đấy)
+- Thư viện husky: Dùng để quản lý và chạy Git hooks ngay trong dự án
+                  Cho phép chạy script tự động trước hoặc sau các sự kiện git.
+- async: Biến một hàm thành bất đồng bộ và trả về Promise
+- await: Chờ kết quả Promise trước khi chạy tiếp
+- Thư viện mongoose: Giúp kết nối và làm việc với MongoDB bằng cách sử dụng Schema và Model.
+- mongoose.Schema: Schema là bản thiết kế mô tả cấu trúc của document trong MongoDB
+- mongoose.model(name, schema):
+    + name = tên model
+    + schema = cấu trúc dữ liệu đã định nghĩa trước đó
+- Ví dụ và giải thích Promise:
+    index(req, res, next) {
+    Course.find({})
+      .then((courses) => {
+        res.render("home", { courses: mutipleMongooseToObject(courses) });
+      })
+      .catch(next);
+  }
+  + Khi gọi Course.find({})
+    MongoDB bắt đầu xử lý yêu cấu
+    Promise lúc này ở trạng thái Pending(chờ)
+  + Nếu truy vấn thành công: Promise sẽ chuyển qua trạng thái fulfilled và sau đó nhảy vào .then(...)
+  + Nếu truy vấn thất bại: Promise sẽ chuyển qua trạng thái rejected và sau đó nhảy vào .catch(...)
