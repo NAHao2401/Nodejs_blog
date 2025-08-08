@@ -7,7 +7,21 @@
 req.query.page → "2"
                             + Khi dữ liệu được gửi qua form (POST) hoặc JSON body. Ví dụ: POST /login với body { username: "admin" }, cách lấy: req.body.username → "admin"
                             + Khi dữ liệu nằm trong đường dẫn động (route params). Ví dụ: /courses/nodejs-basic nếu route là /courses/:slug, cách lấy: req.params.slug → "nodejs-basic"
-
+- //Template engine
+app.engine(
+  "hbs",
+  handlebars({
+    extname: ".hbs",
+    helpers: {
+      sum: (a, b) => a + b,
+    },
+  })
+);
+    + aap.engine: Đăng ký một template engine mới cho Express.
+    + "hbs": Đặt tên engine là hbs (Sau này bạn sẽ dùng đuôi .hbs cho file giao diện).
+    + handlebars({...}): Đây là hàm khởi tạo expres-handlebars, nhận vào object cấu hình.
+          + extname: ".hbs": Đặt phần mở rộng mặc định cho các file template là .hbs, nhờ đó, khi render bạn chỉ cần ghi res.render("home") thì Express sẽ tự hiểu là home.hbs
+          + helpers: {sum: (a, b) => a + b}: Khai bóa helper tên là sum, bạn có thể sử dụng helper này nhưu một hàm
 - app.use(express.urlencoded({extended: true})):
     + Mục đích: Là Middleware của Express dùng để xử lý dữ liệu form gửi từ client (qua phương thức POST, PUT...)
 - app.use(express.json()):
@@ -41,3 +55,8 @@ req.query.page → "2"
     Promise lúc này ở trạng thái Pending(chờ)
   + Nếu truy vấn thành công: Promise sẽ chuyển qua trạng thái fulfilled và sau đó nhảy vào .then(...)
   + Nếu truy vấn thất bại: Promise sẽ chuyển qua trạng thái rejected và sau đó nhảy vào .catch(...)
+- Thư viện method-override: Là một middleware cho Express, giúp giả lập (override) method HTTP khác thông qua query, body hoặc header.
+Lý do sử dụng là bởi From HTML chỉ hỗ trợ method là GET hoặc POST. Nhưng trong ứng dụng RESTful, bạn muốn (PUT, PATCH) hoặc xóa DELETE
+- app.use(methodOverride("_method")): Ý nghĩa là "Nếu request có query string hoặc body tên _method, thì hãy dùng giá trị đó làm method mới cho request này!"
+- .then(() => res.redirect("/me/stored/courses"))
+    + res.redirect(url) là hàm của Express, khi được gọi sẽ gửi response về phía trình duyệt với lệnh chuyển hướng sáng url mới

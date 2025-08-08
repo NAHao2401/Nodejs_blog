@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
+  <div class="container">
+
     <a class="navbar-brand" href="/">Blog</a>
     <button
       class="navbar-toggler"
@@ -13,12 +14,34 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://yt3.ggpht.com/Pa8wyxqTOkhu5DW_RvkiQIS7Bsa7OW7gSen-2WpaQsC2EqUAkgubAg1_QPc951pzpN2F2Q4_TA=s48-c-k-c0x00ffffff-no-rj"
+              alt=""
+              class="user-avatar"
+            />
+            Hào Nguyễn
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/courses/create">Đăng khóa học</a></li>
+            <li><hr class="dropdown-divider" /></li>
+
+            <li><a class="dropdown-item" href="/me/stored/courses">Khóa học của
+                tôi</a></li>
+            <li><a class="dropdown-item" href="/me/stored/news">Bài đăng của tôi</a></li>
+            <li><hr class="dropdown-divider" /></li>
+
+            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+          </ul>
         </li>
       </ul>
     </div>
