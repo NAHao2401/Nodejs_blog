@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
+const mongooseDelete = require("mongoose-delete");
 const { Schema } = mongoose;
 
 const CourseSchema = new Schema(
@@ -19,6 +20,11 @@ const CourseSchema = new Schema(
   },
   { timestamps: true }
 );
+// Add plugin
+CourseSchema.plugin(mongooseDelete, {
+  deletedAt: true, // có cột deletedAt
+  overrideMethods: "all", // .find() tự ẩn doc đã xoá
+});
 
 // Tạo slug; nếu trùng thì thêm -<6 ký tự cuối của _id>
 CourseSchema.pre("validate", async function () {
@@ -47,5 +53,4 @@ CourseSchema.pre("validate", async function () {
 
   this.slug = candidate;
 });
-
 module.exports = mongoose.model("Course", CourseSchema);

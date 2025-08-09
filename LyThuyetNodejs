@@ -60,3 +60,14 @@ Lý do sử dụng là bởi From HTML chỉ hỗ trợ method là GET hoặc PO
 - app.use(methodOverride("_method")): Ý nghĩa là "Nếu request có query string hoặc body tên _method, thì hãy dùng giá trị đó làm method mới cho request này!"
 - .then(() => res.redirect("/me/stored/courses"))
     + res.redirect(url) là hàm của Express, khi được gọi sẽ gửi response về phía trình duyệt với lệnh chuyển hướng sáng url mới
+- Thư viện slugify là một thư viện Node.js chuyên để biến một chuỗi văn bản "bình thường" thành dạng slug - thức là chuỗi ngắn gọn, thân thiện với URL, không dấu, không ký tự đặc biệt, thường viết thường và ngăn cách bằng dấu gạch ngang(-)
+- this.constructor.exists({
+    slug: candidate,
+    _id: { $ne: this._id },
+  })
+    + this.constructor: this->Chính document đang xử lý(ví dụ một Course cụ thể).
+                        this.constructor->Chính class model đã tạo ra document đó(ví dụ Course model).
+                        => Nếu đang trong hook của CourseSchema thì this.contructor chính là mongoose.model('Course');
+    + exists(...): Là một hàm tiện ích của Mongoose để kiểm tra nhanh có tồn tại ít nhất một document thỏa mãn điều kiện hay không.
+    + Bộ lọc {slug: candidate, _id: { $ne: this._id }}: + slug: candidate-> tìm document có slug đúng bằng biến candidate.
+                                                        + _id: {$ne: this._id}-> tìm document có _id khác với _id hiện tại

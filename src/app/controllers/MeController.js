@@ -5,7 +5,18 @@ class MeController {
   storedCourses(req, res, next) {
     Course.find({})
       .then((courses) =>
-        res.render("me/stored-Courses", {
+        res.render("me/stored-courses", {
+          courses: mutipleMongooseToObject(courses),
+        })
+      )
+      .catch(next);
+  }
+
+  // [Get] /me/trash/courses
+  trashCourses(req, res, next) {
+    Course.findWithDeleted({ deletedAt: { $ne: null } }) //$ne: Toán tử truy vấn "Not Equal"
+      .then((courses) =>
+        res.render("me/trash-courses", {
           courses: mutipleMongooseToObject(courses),
         })
       )
