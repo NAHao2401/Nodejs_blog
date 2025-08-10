@@ -1,7 +1,7 @@
 <div class="mt-4">
   <div>
     <h3>Khóa học đã xóa</h3>
-    <a href="/me/stored/courses">Danh sách khóa học</a>
+    <a href="/me/stored/courses" class="text-decoration-none">Danh sách khóa học</a>
   </div>
   <table class="table mt-4">
     <thead>
@@ -9,7 +9,7 @@
         <th scope="col">#</th>
         <th scope="col">Tên khóa học</th>
         <th scope="col">Trình độ</th>
-        <th scope="col">Thời gian tạo</th>
+        <th scope="col">Thời gian xóa</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -19,16 +19,16 @@
           <th scope="row">{{sum @index 1}}</th>
           <td>{{this.name}}</td>
           <td>{{this.level}}</td>
-          <td>{{this.createdAt}}</td>
+          <td>{{this.deletedAt}}</td>
           <td>
             <a
               href=""
-              class="btn btn-link btn-restore"
+              class="btn btn-link btn-restore text-decoration-none"
               data-id="{{this._id}}"
             >Khôi phục</a>
             <a
               href=""
-              class="btn btn-link"
+              class="btn btn-link text-decoration-none"
               data-bs-toggle="modal"
               data-id="{{this._id}}"
               data-bs-target="#delete-course-modal"
@@ -37,7 +37,8 @@
         </tr>
       {{else}}
         <td colspan="5" class="text-center">Thùng rác trống.
-          <a href="/me/stored/courses">Danh sách khóa học</a>
+          <a href="/me/stored/courses" class="text-decoration-none">Danh sách
+            khóa học</a>
         </td>
       {{/each}}
     </tbody>
