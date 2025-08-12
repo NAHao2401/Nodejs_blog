@@ -13,7 +13,7 @@ db.connect();
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.urlencoded({ extends: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 //HTTP logger
