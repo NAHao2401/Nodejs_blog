@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const methodOverride = require("method-override");
 const { engine: handlebars } = require("express-handlebars");
 
-const SortMiddleware = require("./app/middlewares/SortMiddleware");
+const SortMiddleware = require("./app/middlewares/sortMiddlewareX");
 const app = express();
 const port = 3000;
 
