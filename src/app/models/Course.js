@@ -20,6 +20,17 @@ const CourseSchema = new Schema(
   },
   { timestamps: true }
 );
+// Custom query helpers
+CourseSchema.query.sortable = function (req) {
+  if ("_sort" in req.query) {
+    const isValidtype = ["asc", "desc"].includes(req.query.type);
+    return this.sort({
+      [req.query.column]: isValidtype ? req.query.type : "desc",
+    });
+  }
+  return this;
+};
+
 // Add plugin
 CourseSchema.plugin(mongooseDelete, {
   deletedAt: true, // có cột deletedAt

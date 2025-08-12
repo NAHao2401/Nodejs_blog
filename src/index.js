@@ -27,25 +27,7 @@ app.engine(
   "hbs",
   handlebars({
     extname: ".hbs",
-    helpers: {
-      sum: (a, b) => a + b,
-      sortable: (field, sort) => {
-        const sortType = field === sort.column ? sort.type : "default";
-
-        const types = {
-          default: "bi bi-chevron-expand",
-          asc: "bi bi-sort-up",
-          desc: "bi bi-sort-down",
-        };
-
-        const type = types[sort.type];
-        const icon = types[sortType];
-
-        return `<a href="?_sort&column=${field}&type=${sort.type === "desc" ? "asc" : "desc"}">
-          <i class="${icon}"></i>
-        </a>`;
-      },
-    },
+    helpers: require("./helpers/handlebars"),
   })
 );
 app.set("view engine", "hbs");
